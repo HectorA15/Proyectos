@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class PromedioPonderado_3 {
+public class C_PromedioPonderado {
 
     public static void main(String[] args) {
       double Tarea,Examen,Calificacion,T_res,E_res;
