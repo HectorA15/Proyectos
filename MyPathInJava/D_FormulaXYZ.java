@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class FormulaXYZ_4 {
+public class D_FormulaXYZ {
 
     public static void main(String[] args) {
         
