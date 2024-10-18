@@ -1,6 +1,6 @@
 import java.util.Scanner;
 //Hector A.
-public class SRMD_1 {
+public class A_SRMD {
 
     public static void main(String[] args) {
     
