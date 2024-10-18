@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Cambio_6 {
+public class F_Cambio {
 
     public static void main(String[] args) {
         
