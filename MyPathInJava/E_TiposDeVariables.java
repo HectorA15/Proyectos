@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class TiposDeVariables_5 {
+public class E_TiposDeVariables {
 
     public static void main(String[] args) {
        
