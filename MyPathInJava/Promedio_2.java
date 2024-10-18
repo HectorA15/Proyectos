@@ -1,5 +1,5 @@
 
-package Promedio_2;
+package B_Promedio;
 
 import java.util.Scanner;
 //Hector Armando Castro Obele
