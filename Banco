@@ -1,0 +1,218 @@
+//esto es el main
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Ingresar imprimir = new Ingresar();
+
+        System.out.print("nombre del titular: ");
+        String titular = sc.nextLine();
+
+
+
+        long numero = imprimir.pedirNumero();
+        int cvv = imprimir.pedirCvv();
+
+
+        System.out.print("Mes: ");
+        int mes = sc.nextInt();
+        System.out.print("Ano: ");
+        int ano = sc.nextInt();
+
+        Cuenta cuenta = new Cuenta(titular,numero,cvv,mes,ano);
+
+
+
+        System.out.println("-------------- Bienvenido "+ titular + " --------------");
+        System.out.println("Saldo actual: \t\t $" + cuenta.getSaldo());
+        System.out.println();
+
+        while(true) {
+            System.out.println("Seleccione la operacion: ");
+            System.out.println("1. Retirar \t 2. Depositar \t 3. Salir ");
+            int op = sc.nextInt();
+
+            if (op == 1) {
+                System.out.print("Cantidad: \t");
+                double cantidad = sc.nextInt();
+                cuenta.retirar(cantidad);
+
+                System.out.println();
+                System.out.println("\t\tSu saldo actual es: $" + cuenta.getSaldo());
+                System.out.println();
+
+            } else if (op == 2) {
+                System.out.print("Cantidad: \t");
+                double cantidad = sc.nextDouble();
+                cuenta.depositar(cantidad);
+
+                System.out.println();
+                System.out.println("\t\tSu saldo actual es: $" + cuenta.getSaldo());
+                System.out.println();
+
+            } else if (op == 3) {
+                System.out.println("Cerrando sesion...");
+                break;
+            }
+        }
+
+    }
+}
+
+
+---------------------------------------------------------------------------------------------
+//esto es el objeto
+
+import java.util.Scanner;
+
+public class Cuenta {
+
+
+    private String titular;
+    private long numero;
+    private double saldo;
+    private int ccv;
+    private int Mes;
+    private int Ano;
+
+
+    public Cuenta(){
+
+    }
+
+    public Cuenta(String titular,long numero, int ccv, int Mes, int Ano) {
+        this.titular = titular;
+        this.ccv = ccv;
+        this.Mes = Mes;
+        this.Ano = Ano;
+        this.numero = numero;
+
+    }
+
+    //setters
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+    public void setNumero(int ccv) {
+        this.ccv = ccv;
+    }
+    public void setMes(int mes) {
+        this.Mes = mes;
+    }
+    public void setAno(int Ano) {
+        this.Ano = Ano;
+    }
+    public void setNumero(long numero){
+        this.numero = numero;
+    }
+
+
+    //getters
+    public String getTitular(){
+        return titular;
+    }
+    public double getSaldo(){
+        return saldo;
+    }public int getCvv(){
+        return ccv;
+    }
+    public int getMes(){
+        return Mes;
+    }
+    public int getAno(){
+        return Ano;
+    }
+    public long getNumero(){
+        return numero;
+    }
+
+    //metodos
+    public double depositar(double valor){
+        saldo += valor;
+        return saldo;
+    }
+    public double retirar(double valor){
+
+
+        if(valor > saldo){
+            System.out.println("No cuentas con fondos suficientes para retirar");
+            return saldo;
+        }
+
+        saldo -= valor;
+        return saldo;
+    }
+
+}
+
+
+------------------------------------------------------------------------------------------------------------------------
+//estos son los metodos
+
+
+import java.util.Scanner;
+public class Ingresar {
+
+    public long numero;
+
+    Scanner sc = new Scanner(System.in);
+    public Ingresar(){
+
+    }
+
+
+
+
+    public int pedirCvv(){
+        while(true) {
+            System.out.print("CVV: ");
+            String input = sc.nextLine().replaceAll("\\s", "");
+
+            if (input.matches("\\d{3}+")) {
+                return Integer.parseInt(input);
+
+            } else {
+                System.out.println("CVV inválido. Por favor, asegúrate de ingresar 3 dígitos.");
+            }
+        }
+    }
+
+
+    public long pedirNumero(){
+
+        while(true) {
+            System.out.print("Numero de la tarjeta: \t");
+            String input = sc.nextLine().replaceAll("\\s", "");
+
+            if (input.matches("\\d{16}+")) {
+                return Long.parseLong(input);
+
+            } else {
+                System.out.println("Número de tarjeta inválido. Asegúrate de ingresar 16 dígitos.");
+
+            }
+
+        }
+    }
+
+
+    public int pedirMes(){
+        System.out.print("Ingresa el mes (MM): ");
+        String input = sc.nextLine().replaceAll("\\s","");
+
+    }
+
+    public int pedirAno(){
+        System.out.print("Ingresa la fecha (MM/YY): ");
+        String input = sc.nextLine().replaceAll("\\s","");
+
+    }
+    public int pedirAno(){
+
+    }
+}
