@@ -1,0 +1,70 @@
+
+import java.io.*;
+import java.util.InputMismatchException;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.util.Scanner;
+
+public class Elementos {
+
+    public static void main(String[] args) {
+        File File1;
+        PrintWriter pw;
+        FileReader fr;
+
+        BufferedReader bf;
+
+        File1 = new File("C:\\Users\\Alumnos\\Desktop\\elementos.txt");
+
+        Scanner sc = new Scanner(System.in);
+
+        if (!File1.exists()) {
+            try {
+                File1.createNewFile();
+            } catch (IOException ex) {
+                System.out.println("error al crear el archivo");
+                System.out.println("error" + ex.getMessage());
+            }
+        }
+        if (File1.exists()) {
+            try {
+                pw = new PrintWriter(File1, "utf-8");            
+                while (true) {
+
+                    try {
+                        System.out.println("Cantidad de elementos a agregar: ");
+                        int cantidad = sc.nextInt();
+                        sc.nextLine();
+                        for (int i = 0; i < cantidad; i++) {
+                            
+                            System.out.print("nombre del elemento: ");
+                            String elemento = sc.nextLine();
+                            System.out.print("nombre en latin: ");
+                            String latin = sc.nextLine();
+                            System.out.print("simbolo: ");
+                            String simbolo = sc.nextLine();
+                            pw.write(elemento + "\t" + latin + "\t" + simbolo + "\n");
+                        }
+                        
+                        pw.close();
+                        break;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Solo se aceptan numeros enteros");
+                        
+                        e.printStackTrace();
+                        sc.nextLine();
+                        System.out.println();
+                    }
+                }
+            } //archivo
+            catch (FileNotFoundException e) {
+                System.out.println("Error " + e.getMessage());
+            } catch (UnsupportedEncodingException ex) {
+                System.out.println("Error " + ex.getMessage());
+                ex.printStackTrace();
+            } //catch 
+        } else {
+            System.out.println("El archivo no existe");
+        }//else
+    }
+}
